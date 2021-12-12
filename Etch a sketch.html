@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="jquery.js"></script>
+<script src="jquery-ui-1.12.1/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+<style type="text/css">
+
+.grid  { 
+width:1000px;
+height:500px;
+box-shadow: 3px 0px 10px #888888;
+position:relative;
+    
+    left:150px;
+    top: 50px;
+     
+}
+
+
+.tbody { background-color:papayawhip;
+border-width:10px 10px 10px 10px;
+border-style:solid;
+
+
+
+}
+    
+    
+    @keyframes pulse{
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(50,169,255, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+    
+    
+    .grid td:hover {
+  animation: none;
+}
+    
+    
+    
+
+    #press{
+        
+        position:relative;
+        right:-140px;
+        
+        background-color:black;
+        color:white;
+        font-family: futura-pt, sans-serif;
+font-style: normal;
+font-weight: 800;
+        
+    }
+    
+     #press2{
+         position:relative;
+        right:-160px;
+        background-color:black;
+         color:white;
+        font-family: futura-pt, sans-serif;
+font-style: normal;
+font-weight: 800;
+    }
+    
+    
+    
+    
+.grid td{
+
+border:1px solid white;
+    animation: pulse 5s infinite;
+   
+}
+
+   
+</style>
+
+</head>
+<body>
+<button onclick="resbut()" type="button" id= "press" style="width:500px; height:50px; "> Change Squares!  </button>
+
+<button onclick="setcolor()" type="button" id= "press2" style="width:500px; height:50px; "> Color  </button>
+<script type="text/javascript">
+
+if (typeof jQuery=="undefined") {alert ("Jquery sucks");
+
+}else { alert("Good");}
+var body=document.getElementsByTagName('body')[0];
+var grid=document.createElement("table");
+var tbody=document.createElement("tbody");
+var tr=grid.appendChild(document.createElement("tr"));
+var td=tr.appendChild(document.createElement("td")); 
+var cell;
+var clear=true;
+var keepcolor;
+var en;
+var out=1;
+var cli;
+console.log(clear);
+var mygrid=function(x,c2,c3,c4){
+grid=document.createElement("table");
+grid.className="grid";
+grid.setAttribute("id","gridd");
+tbody=document.createElement("tbody");
+tbody.className="tbody";   
+for(i=0; i<x; i++) {
+
+tr=grid.appendChild(document.createElement("tr"));
+
+for (j=0;j<x; j++) {
+
+td=tr.appendChild(document.createElement("td")); 
+td.className="td";
+
+en= td.addEventListener("mouseover", function () {
+
+
+this.style.backgroundColor=c3||"pink";   
+
+
+
+keepcolor=0;
+});
+
+
+cli=td.addEventListener("click", function () {
+
+
+this.style.backgroundColor=c2||"red";   
+
+keepcolor=2;
+});  
+
+
+
+
+
+td.addEventListener("mouseout", function () {
+
+
+this.style.backgroundColor=c1||"deep pink"; 
+keepcolor=1;  
+});
+
+
+
+
+grid.style.backgroundColor=c4; 
+ 
+
+
+
+     if (c2==null) {
+        cli=td.addEventListener("click", function () {
+
+
+this.style.backgroundColor="red";   
+
+keepcolor=2;
+});  
+        
+        
+        
+        
+        
+        
+        
+    }
+
+
+
+    else if (c3==null) {
+        
+        td.addEventListener("mouseover", function () {
+
+
+this.style.backgroundColor="pink";   
+
+
+
+keepcolor=0;
+});
+
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+
+
+}
+
+
+tbody.appendChild(tr);
+
+
+
+}
+
+grid.appendChild(tbody);
+body.appendChild(grid);
+
+
+
+
+
+
+
+
+
+
+
+return grid;
+
+
+}
+
+
+
+
+
+
+console.log(mygrid(16));
+
+
+
+var setcolor=function() { 
+
+
+
+var polor=prompt("Choose a grid color!, A Highlight, A Fill,And a Border!, Use commas in between!");
+
+var tear=polor.split( "," );
+
+console.log(tear);
+
+var Table = grid;
+Table.style.display= "none";
+
+mygrid(16,tear[0],tear[1],tear[2]);
+
+
+
+}
+
+
+
+var resbut=function() {
+
+
+var prom=prompt("Type in the number of squares by row and column!" );
+
+
+
+
+if (prom===null) {
+
+return;
+console.log(prom);
+
+
+
+
+}
+
+else if( prom==0){ return;
+console.log(prom);}
+
+
+else {  
+    
+    
+    var Table = document.getElementById("gridd");
+Table.style.display= "none";
+
+console.log(prom);
+
+
+
+mygrid(prom);
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function() {
+
+});
+
+
+
+
+</script>
+
+
+</body>
+
+
+</html>
